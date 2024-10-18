@@ -1,0 +1,23 @@
+body {
+    background-image: url('/images/moviebg.jpg'); /* Đường dẫn đến file ảnh */
+    background-size: cover; /* Ảnh phủ đầy màn hình */
+    background-position: center; /* Đặt vị trí trung tâm */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu 100% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text1,.text2 {
+    color: white;
+    text-align: center;
+}
+.form-group {
+    margin-bottom: 0; /* Bỏ margin dưới để căn chỉnh chính xác */
+}
+
+.form-control {
+    height: 40px; /* Đảm bảo chiều cao giống nhau */
+    padding: 0.375rem 0.75rem; /* Đảm bảo padding giống nhau */
+}
+

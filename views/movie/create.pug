@@ -1,0 +1,72 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Create Movie
+        //- Add Bootstrap CSS CDN
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        //- Add Bootstrap JS and dependencies
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js")
+        style.
+            img {
+                width: 200px;
+                height: 200px;
+                object-fit: cover;
+                display: none; /* Ảnh sẽ ẩn khi chưa chọn */
+            }
+    body 
+        .container.mt-5
+            a.btn.btn-secondary(href="/") Home
+            h1.text-center.mb-4 Create New Movie
+            form(action="/movie/create", method="post", enctype="multipart/form-data")
+                .form-group
+                    label(for='name') Name
+                    input.form-control(type="text", name='name', id='name', placeholder="Enter movie name", required)   
+                .form-group
+                    label(for='category') Category
+                    input.form-control(type="text", name='category', id='category', placeholder="Enter movie category", required)
+                .form-group
+                    label(for='description') Description
+                    input.form-control(type="text", name='description', id='description', placeholder="Enter movie description", required)
+                .form-group
+                    label(for='year') Year
+                    input.form-control(type="number", name='year', id='year', placeholder="Enter release year", required)
+                .form-group
+                    label(for='rating') Rating
+                    input.form-control(type="number", name='rating', id='rating', placeholder="Enter movie rating", step="0.1", min="0", max="10", required)
+                .form-group
+                    label(for='screen') Screen
+                    input.form-control(type="text", name='screen', id='screen', placeholder="Enter movie screen")
+                .form-group
+                    label(for='showtime') Showtime
+                    input.form-control(type="datetime-local", name='showtime', id='showtime', required)
+                .form-group
+                    label(for='availableSeats') Available Seats
+                    input.form-control(type="number", name='availableSeats', id='availableSeats', placeholder="Enter Available Seats", required, min="0")
+                .form-group
+                    label(for='actors') Actors
+                    input.form-control(type="text", name='actors', id='actors', placeholder="Enter actors (comma separated)", required)
+                .form-group
+                    label(for='image') Image
+                    input.form-control-file(type="file", name='image', id='image', onchange="previewImage(event)", accept="image/*")    
+                    img#imagePreview.mt-3(alt="Selected Image")  
+                .form-group.text-center
+                    input.btn.btn-primary(type="submit", value='Create')     
+        
+        script.
+            function previewImage(event) {
+                const imagePreview = document.getElementById('imagePreview');
+                const file = event.target.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    imagePreview.src = e.target.result; // Set the source of the preview image
+                    imagePreview.style.display = 'block'; // Show the image
+                }
+                
+                if (file) {
+                    reader.readAsDataURL(file); // Read the file and create a URL
+                }
+            }

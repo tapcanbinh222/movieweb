@@ -1,0 +1,45 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title Delete Movies
+        //- Add Bootstrap CSS CDN
+        link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+        //- Add Bootstrap JS and dependencies
+        script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+        script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js")
+        //- Import custom CSS
+        link(rel="stylesheet" href="/stylesheets/delete.css")
+    body
+        .container
+            a.btn.btn-secondary(href="/") Home
+            h1.text-center.my-4 Delete Movies
+            
+            //- Form tìm kiếm
+            form(action="/movie/delete", method="GET", class="mb-4")
+                .input-group
+                    input(type="text" name="keyword" class="form-control" placeholder="Search by movie name")
+                    .input-group-append
+                        button(type="submit" class="btn btn-success") Search
+            
+            table.table.table-bordered
+                thead
+                    tr
+                        th Movie Name
+                        th Category
+                        th Description
+                        th Year
+                        th Rating
+                        th Action
+                tbody
+                    each movie in movies
+                        tr
+                            td #{movie.name}
+                            td #{movie.category}
+                            td #{movie.description}
+                            td #{movie.year}
+                            td #{movie.rating}
+                            td
+                                form(action=`/movie/delete/${movie._id}`, method='POST', class='d-inline')
+                                    button(type='submit', class='btn btn-danger') Delete

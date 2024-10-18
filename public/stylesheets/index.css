@@ -1,0 +1,62 @@
+/* public/stylesheets/index.css */
+body {
+    background-image: url('/images/moviebg.jpg'); /* Đường dẫn đến file ảnh */
+    background-size: cover; /* Ảnh phủ đầy màn hình */
+    background-position: center; /* Đặt vị trí trung tâm */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu 100% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text1,.text2 {
+    color: white;
+    text-align: center;
+}
+/* .text2 {
+    color: white;
+    text-align: center;
+} */
+
+.group_btn_1 {
+    margin-top: 30px;
+}
+
+
+.btn {
+    background-color: black; 
+    color: white; 
+    padding: 15px 25px; 
+    border-radius: 5px; 
+    border: 2px solid red; 
+    transition: background-color 0.3s, color 0.3s; 
+    cursor: pointer; 
+}
+
+
+.btn:hover {
+    background-color: red; 
+    color: white; 
+}
+
+.group_btn2 {
+    margin-top: 20px; 
+}
+.btn2 {
+    background-color: red; 
+    color: white; 
+    padding: 15px 25px; 
+    border-radius: 5px; 
+    border: 2px solid black; 
+    transition: background-color 0.3s, color 0.3s; 
+    cursor: pointer; 
+}
+.btn2:hover {
+    background-color: black; 
+    color: white; 
+}
+
+.btn_logout {
+    margin-top: 30px; 
+}

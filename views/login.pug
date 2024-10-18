@@ -1,0 +1,63 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Login - Movie Tickets
+    // Thêm Bootstrap CSS
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    style.
+      body {
+        background-image: url('/images/moviebg.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+      .login-container {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        max-width: 400px;
+        width: 100%;
+      }
+      .form-control {
+        background-color: #333;
+        color: #fff;
+        border: none;
+      }
+      .form-control:focus {
+        background-color: #fff;
+        border-color: #ffcc00;
+      }
+      .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: black;
+        font-weight: bold;
+      }
+      .btn-primary:hover {
+        background-color: #ffaa00;
+      }
+
+  body 
+    .login-container
+      h1.text-center.mb-4 Login
+      if msg 
+        h3.text-danger.text-center= msg 
+      form(action='/login', method='POST')
+        .form-group
+          label(for='email') Email:
+          input.form-control(type='text', name='email', placeholder='Enter Email', required)
+        .form-group
+          label(for='password') Password:
+          input.form-control(type='password', name='password', placeholder='Enter password', required)
+        .form-group.text-center
+          button.btn.btn-primary(type='submit') Login
+      p.text-center.mt-3 Don't have an account?
+      a.text-center(href='/register') Sign up here!

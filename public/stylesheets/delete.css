@@ -1,0 +1,27 @@
+body {
+    background-image: url('/images/moviebg.jpg'); /* Đường dẫn đến file ảnh */
+    background-size: cover; /* Ảnh phủ đầy màn hình */
+    background-position: center; /* Đặt vị trí trung tâm */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    min-height: 100vh; /* Đảm bảo chiều cao tối thiểu 100% */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.table th, .table td {
+    background-color: rgba(255, 255, 255, 0.8); /* Màu trắng với độ mờ 20% */
+    color: black; 
+}
+
+h1 {
+    color: white; 
+}
+
+.btn-danger {
+    background-color: red; /* Màu nền cho nút delete */
+    border-color: darkred; /* Đường viền cho nút delete */
+}
+
+.btn-danger:hover {
+    background-color: darkred; /* Màu nền khi hover */
+}

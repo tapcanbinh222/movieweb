@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  doctype html
+  html(lang="en")
+    head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, initial-scale=1.0")
+      title Index page
+      //- Add Bootstrap CSS CDN
+      link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+      //- Add Bootstrap JS and dependencies
+      script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js")
+      script(src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js")
+      //- Import custom CSS
+      link(rel="stylesheet" href="/stylesheets/index.css")
+      //- Add a script for button navigation
+      script.
+        function navigateTo(url) {
+          window.location.href = url;
+        }
+    body
+      .container.d-flex.flex-column.align-items-center.justify-content-center.min-vh-100
+        h1.text-center(class="text1") Welcome to the Wonderland Widescreen 
+        div.text-center(class="group_btn_1")
+          button(type="button" class="btn mx-2 mb-3" onclick="navigateTo('/movie/create')") Add movie
+          //- button(type="button" class="btn mx-2 mb-3" onclick="navigateTo('/movie/create')") Book Seats
+          button(type="button" class="btn mx-2 mb-3" onclick="navigateTo('/movie/delete')") Delete movie
+          //- button(type="button" class="btn mx-2 mb-3" onclick="navigateTo('/movie/update')") Update Seats
+        h2.text-center(class="text2") Click each category to view movies
+        div.text-center(class="group_btn2")
+          //- Vòng lặp để tạo nút cho từng category
+          each category in categories
+            button(type="button" class="btn2 mx-2 mb-3" onclick=`navigateTo('/movie/category/${category}')`) #{category}
+          
+        form(action="/movie/logout", method="POST", class="text-center")
+          button(type="submit" class="btn mx-2 mb-3") Logout
+

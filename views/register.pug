@@ -1,0 +1,66 @@
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Register - Movie Tickets
+    // Thêm Bootstrap CSS
+    link(rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    style.
+      body {
+        background-image: url('/images/moviebg.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        color: white;
+      }
+      .login-container {
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        max-width: 400px;
+        width: 100%;
+      }
+      .form-control {
+        background-color: #333;
+        color: #fff;
+        border: none;
+      }
+      .form-control:focus {
+        background-color: #fff;
+        border-color: #ffcc00;
+      }
+      .btn-primary {
+        background-color: #ffcc00;
+        border-color: #ffcc00;
+        color: black;
+        font-weight: bold;
+      }
+      .btn-primary:hover {
+        background-color: #ffaa00;
+      }
+
+  body 
+    .login-container
+      h1.text-center.mb-4 Register
+      if msg 
+        h3.text-danger.text-center= msg 
+      form(action='/register', method='POST')
+        .form-group
+          label(for='username') Username:
+          input.form-control(type='text', name='username', placeholder='Enter username', required)
+        .form-group
+          label(for='email') Email:
+          input.form-control(type='email', name='email', placeholder='Enter email', required)
+        .form-group
+          label(for='password') Password:
+          input.form-control(type='password', name='password', placeholder='Enter password', required)
+        .form-group.text-center
+          button.btn.btn-primary(type='submit') Register
+      p.text-center.mt-3 Already have an account?
+      a.text-center(href='/login') Log in here!
