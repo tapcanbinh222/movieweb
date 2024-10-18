@@ -10,7 +10,7 @@ var usersRouter = require('./routes/users');
 var movieRouter = require('./routes/movie');
 //ket noi mongodb
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/demo')
+mongoose.connect('mongodb+srv://lethanhtrung28042000:1@cluster0.dtlad.mongodb.net/demo?retryWrites=true&w=majority&appName=Cluster0')
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(`Error: ${err}`));
 var app = express();

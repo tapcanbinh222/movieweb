@@ -77,7 +77,7 @@ router.post('/create', upload.single('image'), async (req, res) => {
   }
   try {
     await movie.save(); // Lưu movie vào cơ sở dữ liệu
-    res.redirect("/movie"); // Chuyển hướng về trang chính sau khi tạo thành công
+    res.redirect("/"); // Chuyển hướng về trang chính sau khi tạo thành công
   } catch (err) {
     console.error(err); // Ghi lại lỗi vào console
     res.status(500).send('Server Error.'); // Trả về lỗi 500 nếu xảy ra lỗi trong quá trình lưu
