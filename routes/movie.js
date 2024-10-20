@@ -7,7 +7,8 @@ const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
 // routes/movie.js
-const isAuthenticated = require('../middleware/auth'); // Import middleware
+const isAuthenticated = require('../middleware/auth');
+const checkAdmin = require('../middleware/checkAdmin');
 
 //setup multer de luu image
 const storage = multer.diskStorage({
@@ -62,11 +63,11 @@ router.get('/search', async (req, res) => {
 
 
 // CREATE MOVIE
-router.get('/create',isAuthenticated, (req, res) => {
+router.get('/create',isAuthenticated,checkAdmin, (req, res) => {
   res.render('movie/create');
 });
 
-router.post('/create', upload.single('image'), async (req, res) => {
+router.post('/create', upload.single('image'),checkAdmin, async (req, res) => {
   // Tạo một đối tượng movie mới với dữ liệu từ req.body
   const movie = new Movie(req.body);
   // Kiểm tra xem file có được tải lên không
@@ -90,7 +91,7 @@ router.post('/create', upload.single('image'), async (req, res) => {
 
 
 // Route để hiển thị danh sách phim cần xóa
-router.get('/delete',isAuthenticated, async (req, res) => {
+router.get('/delete',isAuthenticated, checkAdmin ,async (req, res) => {
   const keyword = req.query.keyword || ''; // Lấy keyword từ query, mặc định là chuỗi rỗng
   try {
     // Tìm các movie dựa trên tên phim
@@ -102,7 +103,7 @@ router.get('/delete',isAuthenticated, async (req, res) => {
   }
 });
 
-router.post('/delete/:id', async (req, res) => {
+router.post('/delete/:id',checkAdmin, async (req, res) => {
   try {
     // Tìm movie để lấy tên tệp hình ảnh
     const movie = await Movie.findById(req.params.id);
@@ -128,8 +129,6 @@ router.post('/delete/:id', async (req, res) => {
 });
 
 
-// Route xử lý logout bằng phương thức POST
-// Route xử lý đăng xuất
 router.post('/logout', (req, res) => {
   req.session.isLoggedIn = false; // Đặt trạng thái đăng nhập thành false
   req.session.destroy(err => {

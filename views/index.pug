@@ -20,6 +20,7 @@ block content
           window.location.href = url;
         }
     body
+     
       .container.d-flex.flex-column.align-items-center.justify-content-center.min-vh-100
         h1.text-center(class="text1") Welcome to the Wonderland Widescreen 
         div.text-center(class="group_btn_1")
@@ -32,7 +33,37 @@ block content
           //- Vòng lặp để tạo nút cho từng category
           each category in categories
             button(type="button" class="btn2 mx-2 mb-3" onclick=`navigateTo('/movie/category/${category}')`) #{category}
-          
-        form(action="/movie/logout", method="POST", class="text-center")
-          button(type="submit" class="btn mx-2 mb-3") Logout
+        
 
+        if isLoggedIn
+          form(action="/movie/logout", method="POST", class="text-center")
+            button(type="submit" class="btn mx-2 mb-3") Logout
+        else
+          a(href="/login" class="btn mx-2 mb-3") Login
+       
+        div.modal.fade(id="notificationModal", tabindex="-1", role="dialog", aria-labelledby="modalLabel", aria-hidden="true")
+          div.modal-dialog(role="document")
+            div.modal-content
+              div.modal-header
+                h5.modal-title#modalLabel Thông Báo
+                button.close(type="button", data-dismiss="modal", aria-label="Close")
+                  span(aria-hidden="true") &times;
+              div.modal-body
+                p Đây là thông báo từ hệ thống.
+              div.modal-footer
+                 button.btn.btn-secondary(type="button", data-dismiss="modal", onclick="clearUrlParams()") Đóng
+
+        //- Kiểm tra thông báo
+        if msg
+          script.
+            $(document).ready(function() {
+              $('#notificationModal').modal('show');
+              $('.modal-body p').text("#{msg}"); // Cập nhật nội dung modal
+            });
+        script.
+          function clearUrlParams() {
+            // Xóa các tham số URL
+            const url = new URL(window.location);
+            url.searchParams.forEach((_, key) => url.searchParams.delete(key)); // Xóa tất cả tham số
+            window.history.replaceState({}, document.title, url); // Cập nhật URL mà không làm mới trang
+          }
