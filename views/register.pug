@@ -60,6 +60,15 @@ html(lang="en")
         .form-group
           label(for='password') Password:
           input.form-control(type='password', name='password', placeholder='Enter password', required)
+        // Radio buttons for selecting role
+        .form-group
+          label Role:
+          .form-check
+            input.form-check-input(type='radio', name='role', value='admin', id='adminRole', required)
+            label.form-check-label(for='adminRole') Admin
+          .form-check
+            input.form-check-input(type='radio', name='role', value='user', id='userRole', required)
+            label.form-check-label(for='userRole') User
         .form-group.text-center
           button.btn.btn-primary(type='submit') Register
       p.text-center.mt-3 Already have an account?

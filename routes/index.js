@@ -30,19 +30,23 @@ router.get('/register', (req, res) => {
 
 router.post('/register', async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    
+    const { username, email, password, role } = req.body; // Thêm role vào từ form đăng ký
+
     // Kiểm tra nếu email đã tồn tại
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.render('register', { msg: "Email already registered" });
     }
 
-    // Tạo user mới và lưu vào cơ sở dữ liệu
-    const newUser = new User({ username, email, password });
+    const newUser = new User({
+      username,
+      email,
+      password,
+      roles: [role],
+    });
+
     await newUser.save();
 
-    // Sau khi đăng ký thành công, chuyển hướng đến trang đăng nhập
     res.redirect('/login');
   } catch (err) {
     console.error(err);
