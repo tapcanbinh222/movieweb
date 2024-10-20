@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const Role = require('./models/role.model')
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,7 +12,10 @@ var movieRouter = require('./routes/movie');
 //ket noi mongodb
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://lethanhtrung28042000:1@cluster0.dtlad.mongodb.net/demo?retryWrites=true&w=majority&appName=Cluster0')
-  .then(() => console.log('MongoDB Connected'))
+  .then(() => {
+    console.log('MongoDB Connected')
+    initial();
+  })
   .catch(err => console.log(`Error: ${err}`));
 var app = express();
 
@@ -55,4 +59,22 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+const initial = async () => {
+  try {
+    const count = await Role.estimatedDocumentCount();
+
+    if (count === 0) {
+      // Thêm vai trò 'user'
+      await new Role({ name: "user" }).save();
+      console.log("added 'user' to roles collection");
+
+      // Thêm vai trò 'admin'
+      await new Role({ name: "admin" }).save();
+      console.log("added 'admin' to roles collection");
+    }
+  } catch (err) {
+    console.log("error", err);
+  }
+};
 module.exports = app;
