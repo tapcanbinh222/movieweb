@@ -11,17 +11,16 @@ router.get('/', async (req, res)=> {
   res.render('index', {categories , isLoggedIn,msg });
 });
 router.get('/login', (req, res) => {
-  res.render('login'); // render trang login.pug
+  res.render('login');
 });
 
-// Route xử lý đăng nhập
-// Route xử lý đăng nhập
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
   try {
     // Tìm người dùng theo email
     const user = await User.findOne({ email }).populate('roles');
+    console.log(user.roles);
 
     // Kiểm tra nếu người dùng tồn tại và mật khẩu khớp
     if (user && password === user.password) {
